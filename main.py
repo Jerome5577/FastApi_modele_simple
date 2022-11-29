@@ -117,12 +117,12 @@ app = FastAPI(
 
 # create routes
 # home route(/) 
-#@app.get("/")
-#def read_root():
-#    return {"msg":'TWEET SENTIMENT'}
+@app.get("/")
+def read_root():
+    return {"msg":'TWEET SENTIMENT'}
 
 # predict route
-@app.get("/predict_tweet")
+@app.post("/predict_tweet")
 def predict_tweet(tweet:str):
     #data = input.dict()
     # clean the tweet
