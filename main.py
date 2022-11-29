@@ -122,7 +122,7 @@ def read_root():
     return {"msg":'TWEET SENTIMENT'}
 
 # predict route(/predict)
-@app.post("/predict_tweet")
+@app.get("/predict_tweet")
 def predict_tweet(input:Input):    
     # clean the tweet
     cleaned_text = process_tweet_phase1(input)
