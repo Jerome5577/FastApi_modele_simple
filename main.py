@@ -116,13 +116,13 @@ app = FastAPI(
             )
 
 # create routes
-# home route(/) which will just return “Car Price Predictor” message 
+# home route(/) 
 @app.get("/")
 def read_root():
     return {"msg":'TWEET SENTIMENT'}
 
-# predict route(/predict)
-@app.get("/predict_tweet")
+# predict route
+@app.post("/predict_tweet")
 def predict_tweet(input:Input):    
     # clean the tweet
     cleaned_text = process_tweet_phase1(input)
@@ -139,6 +139,6 @@ def predict_tweet(input:Input):
         'prediction': sentiments[output]
         }
 
-#if __name__=="__main__":
-#    uvicorn.run(app, host="127.0.0.1", port=8000)
+if __name__=="__main__":
+    uvicorn.run(app, host="127.0.0.1", port=8000)
 
