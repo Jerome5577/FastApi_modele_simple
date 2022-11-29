@@ -122,7 +122,7 @@ app = FastAPI(
 #    return {"msg": 'test'}
 
 # predict route
-@app.post("/predict_tweet", response_model=Tweet)
+@app.post("/predict_tweet")
 async def predict_tweet(tweet : Tweet ):
     tweet_dict = tweet.dict()
     # clean the tweet
