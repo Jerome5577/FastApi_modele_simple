@@ -122,12 +122,12 @@ def read_root():
     return {"msg":'TWEET SENTIMENT'}
 
 # predict route
-@app.get("/predict_tweet/", response_model=Tweet)
-async def predict_tweet(input: Tweet):
+@app.get("/predict_tweet/{tweet]")
+async def predict_tweet(tweet):
     #data = input.dict()
     # clean the tweet
     #cleaned_text = process_tweet_phase1(data['Tweet'])
-    cleaned_text = process_tweet_phase1(input.tweet)
+    cleaned_text = process_tweet_phase1(tweet)
     cleaned_text = process_tweet_phase2(cleaned_text)
     cleaned_text = porter_stemmer(cleaned_text)
     # prediction
