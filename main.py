@@ -124,8 +124,9 @@ def read_root():
 # predict route
 @app.post("/predict_tweet")
 def predict_tweet(input:Input):
+    data = input.dict()
     # clean the tweet
-    cleaned_text = process_tweet_phase1(input.Tweet)
+    cleaned_text = process_tweet_phase1(data['Tweet'])
     cleaned_text = process_tweet_phase2(cleaned_text)
     cleaned_text = porter_stemmer(cleaned_text)
     # prediction
