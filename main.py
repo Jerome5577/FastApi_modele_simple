@@ -125,7 +125,7 @@ def read_root():
 @app.get("/predict_tweet")
 async def predict_tweet(input:Input):
     # clean the tweet
-    cleaned_text = process_tweet_phase1(input)
+    cleaned_text = process_tweet_phase1(input.Tweet)
     cleaned_text = process_tweet_phase2(cleaned_text)
     cleaned_text = porter_stemmer(cleaned_text)
     # prediction
