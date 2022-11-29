@@ -107,7 +107,7 @@ model = load( file_name )
 # Pydantic models are structures that ingest the data, parse it and make sure it conforms 
 # to the fields’ constraints defined in it
 class Input(BaseModel):
-   Tweet : str
+    Tweet : str
     
 # create FastAPI instance
 app = FastAPI(
@@ -122,8 +122,8 @@ def read_root():
     return {"msg":'TWEET SENTIMENT'}
 
 # predict route
-@app.get("/predict_tweet")
-async def predict_tweet(input:Input):
+@app.post("/predict_tweet")
+def predict_tweet(input:Input):
     # clean the tweet
     cleaned_text = process_tweet_phase1(input.Tweet)
     cleaned_text = process_tweet_phase2(cleaned_text)
