@@ -123,13 +123,11 @@ def read_root():
 
 # predict route(/predict)
 @app.post("/predict_tweet")
-def predict_tweet(input:Input):
-    
+def predict_tweet(input:Input):    
     # clean the tweet
     cleaned_text = process_tweet_phase1(input)
     cleaned_text = process_tweet_phase2(cleaned_text)
     cleaned_text = porter_stemmer(cleaned_text)
-
     # prediction
     prediction = model.predict([cleaned_text])
     # output
@@ -141,6 +139,6 @@ def predict_tweet(input:Input):
         'prediction': sentiments[output]
         }
 
-if __name__=="__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+#if __name__=="__main__":
+#    uvicorn.run(app, host="127.0.0.1", port=8000)
 
