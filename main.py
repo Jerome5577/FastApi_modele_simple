@@ -117,16 +117,16 @@ app = FastAPI(
 
 # create routes
 # home route(/) 
-@app.get("/")
-def read_test():
-    return {"msg": 'test'}
+#@app.get("/")
+#def read_test():
+#    return {"msg": 'test'}
 
 # predict route
-@app.post("/predict_tweet/", response_model=Tweet)
+@app.post("/predict_tweet", response_model=Tweet)
 async def predict_tweet(tweet : Tweet ):
-    data = tweet.dict()
+    tweet_dict = tweet.dict()
     # clean the tweet
-    cleaned_text = process_tweet_phase1(data['text_tweet'])
+    cleaned_text = process_tweet_phase1(tweet.text_tweet)
     #cleaned_text = process_tweet_phase1(tweet_text.tweet)
     cleaned_text = process_tweet_phase2(cleaned_text)
     cleaned_text = porter_stemmer(cleaned_text)
