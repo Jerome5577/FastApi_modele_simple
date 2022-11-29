@@ -1,8 +1,8 @@
 
 #%pip install fastapi uvicorn pydantic 
 
-from fastapi import FastAPI
-from pydantic import BaseModel
+from fastapi import FastAPI, Body
+from pydantic import BaseModel,  Field
 import uvicorn
 import pickle
 from joblib import load
@@ -122,9 +122,9 @@ def read_test():
     return {"msg": 'test'}
 
 # predict route
-@app.get("/predict_tweet/{tweet_text}")
-async def predict_tweet(tweet_text : Tweet):
-    #data = input.dict()
+@app.get("/predict_tweet/")
+async def predict_tweet(tweet_text : Tweet = Body(embed=True)):
+    data = tweet_text.dict()
     # clean the tweet
     #cleaned_text = process_tweet_phase1(data['Tweet'])
     cleaned_text = process_tweet_phase1(tweet_text.tweet)
